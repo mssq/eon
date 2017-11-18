@@ -9,7 +9,7 @@ class LoginForm extends Component {
 
     return (
       <Button
-        onPress={() => navigate('Home')}
+        onPress={() => navigate('DrawerStack')}
       >
         Log in
       </Button>
