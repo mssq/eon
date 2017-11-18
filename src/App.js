@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { StackFeed } from './components/config/router';
+import { PrimaryNav } from './components/navigation/PrimaryNav';
 
 class App extends Component {
 
   render() {
     return (
-      <StackFeed />
+      <PrimaryNav />
     );
   }
 }
