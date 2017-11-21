@@ -1,7 +1,7 @@
 import { DrawerNavigator } from 'react-navigation';
 
 import HomeScreen from '../HomeScreen';
-import TestScreen from '../TestScreen';
+import LibraryList from '../LibraryList';
 
 const DrawerStack = DrawerNavigator({
   Home: { 
@@ -10,10 +10,10 @@ const DrawerStack = DrawerNavigator({
       headerTitle: 'Home'
     }
   },
-  Test: {
-    screen: TestScreen,
+  'Usage Tips': {
+    screen: LibraryList,
     navigationOptions: {
-      headerTitle: 'Test'
+      headerTitle: 'Usage Tips'
     }
   },
   
