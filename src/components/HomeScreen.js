@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Text, Image } from 'react-native';
 import { Button, Card, CardSection } from './common';
 import userData from './data/userData.json';
+import  { DailyConsumption } from './DailyConsumption';
 
 class HomeScreen extends Component {
 
   render() {
-    const { imageStyle, cardStyle, infoStyle, goalStyle, socialStyle, 
-      numberStyle, nameStyle, descStyle, goalTextStyle } = styles;
-    const { name, dailyConsumptionValue, monthlyConsumptionValue, 
-      monthlyAverageConsumption, consumptionUnit, goals, currentGoal } = userData;
+    const { imageStyle, cardStyle, infoStyle, socialStyle, 
+      numberStyle, nameStyle, descStyle } = styles;
+    const { name, monthlyConsumptionValue, monthlyAverageConsumption, consumptionUnit } = userData;
 
     return (
       <Card style={cardStyle}>
@@ -25,12 +25,7 @@ class HomeScreen extends Component {
           <Text style={descStyle}>current / month avg</Text>
         </CardSection>
 
-        <CardSection style={goalStyle}>
-          <Text style={goalTextStyle}>DAILY GOAL</Text>
-          <Text style={numberStyle}>
-            {dailyConsumptionValue} {consumptionUnit} / {goals[currentGoal].targetValue} {goals[currentGoal].targetUnit}
-          </Text>
-        </CardSection>
+        <DailyConsumption />
 
         <CardSection style={socialStyle}>
           <Button>Social</Button>
@@ -54,13 +49,6 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(52, 52, 52, 0.8)',
-    borderRadius: 12
-  },
-  goalStyle: {
-    height: 90,
-    width: 200,
-    justifyContent: 'center',
-    backgroundColor: 'rgba(70, 130, 180, 1)',
     borderRadius: 12
   },
   socialStyle: {
@@ -95,13 +83,6 @@ const styles = {
     color: '#ffffff',
     fontSize: 16,
     marginTop: 0
-  },
-  goalTextStyle: {
-    textAlign: 'center',
-    color: '#ffffff',
-    fontWeight: 'bold',
-    fontSize: 20,
-    marginBottom: 5
   }
 };
 
