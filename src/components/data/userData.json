@@ -1,0 +1,13 @@
+{
+    "id": 0,
+    "name": "John Doe",
+    "dailyConsumptionValue": 6,
+    "monthlyConsumptionValue": 52,
+    "monthlyAverageConsumption": 102,
+    "consumptionUnit": "kW",
+    "currentGoal": 0,
+    "goals": [
+        { "id": 0, "targetValue": 8, "targetUnit": "kW", "targetTimespawn": "Daily", "date": "2017-11-29" },
+        { "id": 1, "targetValue": 6, "targetUnit": "kW", "targetTimespawn": "Daily", "date": "2017-11-30" }
+    ]
+}
