@@ -1,7 +1,8 @@
 import { DrawerNavigator } from 'react-navigation';
 
 import HomeScreen from '../HomeScreen';
-import LibraryList from '../LibraryList';
+import UsageList from '../UsageList';
+import Goals from '../Goals';
 
 const DrawerStack = DrawerNavigator({
   Home: { 
@@ -10,8 +11,14 @@ const DrawerStack = DrawerNavigator({
       headerTitle: 'Home'
     }
   },
+  Goals: {
+    screen: Goals,
+    navigationOptions: {
+      headerTitle: 'Goals'
+    }
+  },
   'Usage Tips': {
-    screen: LibraryList,
+    screen: UsageList,
     navigationOptions: {
       headerTitle: 'Usage Tips'
     }
