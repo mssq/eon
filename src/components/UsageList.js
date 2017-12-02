@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { ListView } from 'react-native';
-import ListItem from './ListItem';
+import UsageItem from './UsageItem';
 import usageData from './data/usageData.json';
 
-class LibraryList extends Component {
+class UsageList extends Component {
   constructor(props) {
     super(props);
 
@@ -17,10 +17,10 @@ class LibraryList extends Component {
     return (
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={(data) => <ListItem {...data} />}
+        renderRow={(data) => <UsageItem {...data} />}
       />
     );
   }
 }
 
-export default LibraryList;
+export default UsageList;

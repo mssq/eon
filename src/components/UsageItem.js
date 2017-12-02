@@ -4,7 +4,7 @@ import { CardSection } from './common';
 
 UIManager.setLayoutAnimationEnabledExperimental(true);
 
-class ListItem extends Component {
+class UsageItem extends Component {
   constructor(props) {
     super(props);
     this.state = { expanded: false };
@@ -82,4 +82,4 @@ const styles = {
   }
 };
 
-export default ListItem;
+export default UsageItem;
