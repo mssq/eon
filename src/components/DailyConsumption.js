@@ -3,18 +3,18 @@ import { Text } from 'react-native';
 import { CardSection } from './common';
 import userData from './data/userData.json';
 
-const DailyConsumption = () => {
+const DailyConsumption = ({ style }) => {
   const { goalStyle, numberStyle, goalTextStyle } = styles;
   const { dailyConsumptionValue, consumptionUnit, goals, currentGoal } = userData;
 
   return (
-    <CardSection style={goalStyle}>
+    <CardSection style={style || goalStyle}>
       <Text style={goalTextStyle}>DAILY GOAL</Text>
       <Text style={numberStyle}>
         {dailyConsumptionValue} {consumptionUnit} / {goals[currentGoal].targetValue} {goals[currentGoal].targetUnit}
       </Text>
     </CardSection>
-  )
+  );
 };
 
 const styles = {
