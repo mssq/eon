@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, Image } from 'react-native';
 import { Button, Card, CardSection } from './common';
 import userData from './data/userData.json';
-import  { DailyConsumption } from './DailyConsumption';
+import { DailyConsumption } from './DailyConsumption';
 
 class HomeScreen extends Component {
 
@@ -52,11 +52,9 @@ const styles = {
     borderRadius: 12
   },
   socialStyle: {
-    borderBottomWidth: 1,
     padding: 5,
     justifyContent: 'flex-start',
     flexDirection: 'row',
-    borderColor: '#ddd',
     position: 'relative'
   },
   imageStyle: {
