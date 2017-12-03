@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
+import RNFS from 'react-native-fs';
 import { Text, Image } from 'react-native';
 import { Button, Card, CardSection } from './common';
-import userData from './data/userData.json';
+import FileHandling from './filehandling/FileHandling';
+import userData from './data/userData';
 import { DailyConsumption } from './DailyConsumption';
 
 class HomeScreen extends Component {
+  state = { userJsonData: userData };
+
+  componentWillMount() {
+    RNFS.readFile(`${RNFS.DocumentDirectoryPath}/userdata.json`, 'utf8')
+    .then((file) => {
+      this.setState({ userJsonData: JSON.parse(file) });
+    })
+    .catch((err) => {
+      console.log(err.message);
+      FileHandling.writeFile(userData);
+    });
+  }
 
   render() {
     const { imageStyle, cardStyle, infoStyle, socialStyle, 
       numberStyle, nameStyle, descStyle } = styles;
-    const { name, monthlyConsumptionValue, monthlyAverageConsumption, consumptionUnit } = userData;
-
+    const { name, monthlyConsumptionValue, monthlyAverageConsumption, consumptionUnit } = this.state.userJsonData;
     return (
       <Card style={cardStyle}>
         <CardSection style={infoStyle}>
@@ -25,7 +38,8 @@ class HomeScreen extends Component {
           <Text style={descStyle}>current / month avg</Text>
         </CardSection>
 
-        <DailyConsumption />
+        
+        <DailyConsumption userJsonData={this.state.userJsonData} />
 
         <CardSection style={socialStyle}>
           <Button>Social</Button>

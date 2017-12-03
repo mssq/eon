@@ -1,11 +1,18 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { CardSection } from './common';
-import userData from './data/userData.json';
+import UserData from './data/userData';
 
-const DailyConsumption = ({ style }) => {
+let { dailyConsumptionValue, consumptionUnit, goals, currentGoal } = UserData;
+
+const DailyConsumption = ({ style, userJsonData }) => {
   const { goalStyle, numberStyle, goalTextStyle } = styles;
-  const { dailyConsumptionValue, consumptionUnit, goals, currentGoal } = userData;
+  if (userJsonData !== undefined) {
+    dailyConsumptionValue = userJsonData.dailyConsumptionValue;
+    consumptionUnit = userJsonData.consumptionUnit;
+    goals = userJsonData.goals;
+    currentGoal = userJsonData.currentGoal;
+  }
 
   return (
     <CardSection style={style || goalStyle}>
