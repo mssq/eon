@@ -1,9 +1,43 @@
 import React, { Component } from 'react';
+import RNFS from 'react-native-fs';
 import { Text, Picker, Dimensions } from 'react-native';
 import { CardSection, Card, Button, Input } from './common';
+import FileHandling from './filehandling/FileHandling';
 
 class HomeScreen extends Component {
-  state = { targetValue: '', targetUnit: '', targetTimespawn: '' };
+  state = { targetValue: 6, targetUnit: 'kW', targetTimespawn: 'Daily' };
+
+  editFile() {
+    RNFS.readFile(`${RNFS.DocumentDirectoryPath}/userdata.json`, 'utf8')
+    .then((file) => {
+      const dateObj = new Date();
+      const year = dateObj.getUTCFullYear();
+      const month = dateObj.getUTCMonth() + 1;
+      let day = dateObj.getUTCDate();
+      if (day <= 9) {
+        day = `0${day}`;
+      }
+        
+      
+      const newdate = `${year}-${month}-${day}`;
+
+      const jsonFile = JSON.parse(file);
+      const str = `{"id": ${jsonFile.goals.length},
+      "targetValue": ${this.state.targetValue}, "targetUnit": "${this.state.targetUnit}",
+      "targetTimespawn": "${this.state.targetTimespawn}", "date": "${newdate}"}`;
+
+      jsonFile.goals.push(JSON.parse(str));
+      jsonFile.currentGoal = jsonFile.goals.length - 1;
+      FileHandling.writeFile(jsonFile);
+      console.log(file);
+    })
+    .then(() => {
+      this.props.navigation.navigate('DrawerStack');
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+  }
 
   render() {
     const { cardStyle, buttonStyle, pickerSectionStyle, pickerStyle, pickerTextStyle } = styles;
@@ -15,7 +49,7 @@ class HomeScreen extends Component {
           <Input 
             label="Target value:"
             keyboardType='numeric'
-            value={this.state.targetValue}
+            value={this.state.targetValue.toString()}
             onChangeText={targetValue => this.setState({ targetValue })}
           />
         </CardSection>
@@ -45,8 +79,11 @@ class HomeScreen extends Component {
         </CardSection>
 
         <CardSection style={buttonStyle}>
-          <Button>SET GOAL</Button>
+          <Button
+            onPress={() => this.editFile()}
+          >SET GOAL</Button>
         </CardSection>
+
       </Card>
     );
   }
