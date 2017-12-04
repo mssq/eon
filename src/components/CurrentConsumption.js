@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 import { CardSection } from './common';
 import UserData from './data/userData';
 
-let { dailyConsumptionValue, consumptionUnit, goals, currentGoal } = UserData;
+let { dailyConsumptionValue, monthlyConsumptionValue, consumptionUnit, goals, currentGoal } = UserData;
 let goalStyle = {
   height: 90,
   width: 200,
@@ -13,13 +13,22 @@ let goalStyle = {
   borderRadius: 12
 };
 
-const DailyConsumption = ({ userJsonData, goalStatus }) => {
+const CurrentConsumption = ({ userJsonData, goalStatus }) => {
   const { numberStyle, goalTextStyle } = styles;
   if (userJsonData !== undefined) {
     dailyConsumptionValue = userJsonData.dailyConsumptionValue;
+    monthlyConsumptionValue = userJsonData.monthlyConsumptionValue;
     consumptionUnit = userJsonData.consumptionUnit;
     goals = userJsonData.goals;
     currentGoal = userJsonData.currentGoal;
+  }
+
+  let currentValue = 0;
+  
+  if (goals[currentGoal].targetTimespawn === 'Daily') {
+    currentValue = dailyConsumptionValue;
+  } else {
+    currentValue = monthlyConsumptionValue;
   }
 
   if (!goalStatus && goalStatus !== undefined) {
@@ -44,9 +53,9 @@ const DailyConsumption = ({ userJsonData, goalStatus }) => {
 
   return (
     <CardSection style={goalStyle}>
-      <Text style={goalTextStyle}>DAILY GOAL</Text>
+      <Text style={goalTextStyle}>{goals[currentGoal].targetTimespawn.toUpperCase()} GOAL</Text>
       <Text style={numberStyle}>
-        {dailyConsumptionValue} {consumptionUnit} / {goals[currentGoal].targetValue} {goals[currentGoal].targetUnit}
+        {currentValue} {consumptionUnit} / {goals[currentGoal].targetValue} {goals[currentGoal].targetUnit}
       </Text>
     </CardSection>
   );
@@ -69,4 +78,4 @@ const styles = {
   }
 };
 
-export { DailyConsumption };
+export { CurrentConsumption };
