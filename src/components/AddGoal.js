@@ -67,7 +67,6 @@ class HomeScreen extends Component {
             onValueChange={targetUnit => this.setState({ targetUnit })}
           >
             <Picker.Item label="kW" value="kw" />
-            <Picker.Item label="W" value="w" />
           </Picker>
         </CardSection>
 
