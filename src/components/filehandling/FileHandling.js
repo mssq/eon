@@ -13,20 +13,7 @@ const FileWrite = {
         console.log(err.message);
       })
     );
-  },
-
-  readFile: () => {
-    RNFS.readFile(`${RNFS.DocumentDirectoryPath}/userdata.json`, 'utf8')
-    .then((file) => {
-        console.log(file);
-        return file;
-      }
-    )
-    .catch((err) => {
-      console.log(err.message);
-    });
   }
-  
 };
 
 export default FileWrite;
