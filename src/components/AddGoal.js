@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import RNFS from 'react-native-fs';
 import { Text, Picker, Dimensions } from 'react-native';
-import { CardSection, Card, Button, Input } from './common';
+import { CardSection, Card, Button, Input, Confirm } from './common';
 import FileHandling from './filehandling/FileHandling';
 
 class HomeScreen extends Component {
-  state = { targetValue: 6, targetUnit: 'kW', targetTimespawn: 'Daily' };
+  state = { targetValue: 6, targetUnit: 'kW', targetTimespawn: 'Daily', showModal: false };
+
+  onAccept() {
+    this.setState({ showModal: false });
+    this.props.navigation.navigate('DrawerStack');
+  }
 
   editFile() {
     RNFS.readFile(`${RNFS.DocumentDirectoryPath}/userdata.json`, 'utf8')
@@ -32,7 +37,7 @@ class HomeScreen extends Component {
       console.log(file);
     })
     .then(() => {
-      this.props.navigation.navigate('DrawerStack');
+      this.setState({ showModal: true });
     })
     .catch((err) => {
       console.log(err.message);
@@ -83,6 +88,13 @@ class HomeScreen extends Component {
             onPress={() => this.editFile()}
           >SET GOAL</Button>
         </CardSection>
+
+        <Confirm
+          visible={this.state.showModal}
+          onAccept={this.onAccept.bind(this)}
+        >
+          Current goal has been changed
+        </Confirm>
 
       </Card>
     );
