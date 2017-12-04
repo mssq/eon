@@ -20,6 +20,15 @@ class HomeScreen extends Component {
     });
   }
 
+  goalStatus() {
+    const { dailyConsumptionValue, goals, currentGoal } = this.state.userJsonData;
+    if (dailyConsumptionValue > goals[currentGoal].targetValue) {
+      return false;
+    }
+
+    return true;
+  }
+
   render() {
     const { imageStyle, cardStyle, infoStyle, socialStyle, 
       numberStyle, nameStyle, descStyle } = styles;
@@ -39,7 +48,7 @@ class HomeScreen extends Component {
         </CardSection>
 
         
-        <DailyConsumption userJsonData={this.state.userJsonData} />
+        <DailyConsumption userJsonData={this.state.userJsonData} goalStatus={this.goalStatus()} />
 
         <CardSection style={socialStyle}>
           <Button>Social</Button>
@@ -53,7 +62,6 @@ const styles = {
   cardStyle: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-between',
     alignItems: 'center'
   },
   infoStyle: {
@@ -67,6 +75,7 @@ const styles = {
   },
   socialStyle: {
     padding: 5,
+    marginTop: 40,
     justifyContent: 'flex-start',
     flexDirection: 'row',
     position: 'relative'
