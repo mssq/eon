@@ -5,14 +5,14 @@ import { DailyConsumption } from './DailyConsumption';
 class HomeScreen extends Component {
 
   render() {
-    const { cardStyle, consumptionStyle, buttonStyle } = styles;
+    const { cardStyle, buttonStyleOne, buttonStyleTwo } = styles;
     const { navigate } = this.props.navigation;
 
     return (
       <Card style={cardStyle}>
-        <DailyConsumption style={consumptionStyle} />
+        <DailyConsumption />
 
-        <CardSection style={buttonStyle}>
+        <CardSection style={buttonStyleOne}>
           <Button
             onPress={() => navigate('goalStack')}
           >
@@ -20,7 +20,7 @@ class HomeScreen extends Component {
           </Button>
         </CardSection>
 
-        <CardSection style={buttonStyle}>
+        <CardSection style={buttonStyleTwo}>
           <Button>Past goals</Button>
         </CardSection>
       </Card>
@@ -34,16 +34,15 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center'
   },
-  consumptionStyle: {
-    height: 90,
-    width: 200,
-    marginTop: 40,
-    marginBottom: 100,
-    justifyContent: 'center',
-    backgroundColor: 'rgba(70, 130, 180, 1)',
-    borderRadius: 12
+  buttonStyleOne: {
+    padding: 5,
+    marginTop: 60,
+    marginBottom: 20,
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    position: 'relative'
   },
-  buttonStyle: {
+  buttonStyleTwo: {
     padding: 5,
     marginBottom: 20,
     justifyContent: 'flex-start',
