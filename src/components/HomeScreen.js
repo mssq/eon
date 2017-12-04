@@ -4,7 +4,7 @@ import { Text, Image } from 'react-native';
 import { Button, Card, CardSection } from './common';
 import FileHandling from './filehandling/FileHandling';
 import userData from './data/userData';
-import { DailyConsumption } from './DailyConsumption';
+import { CurrentConsumption } from './CurrentConsumption';
 
 class HomeScreen extends Component {
   state = { userJsonData: userData };
@@ -21,8 +21,15 @@ class HomeScreen extends Component {
   }
 
   goalStatus() {
-    const { dailyConsumptionValue, goals, currentGoal } = this.state.userJsonData;
-    if (dailyConsumptionValue > goals[currentGoal].targetValue) {
+    const { dailyConsumptionValue, monthlyConsumptionValue, goals, currentGoal } = this.state.userJsonData;
+    let currentValue = 0;
+    
+    if (goals[currentGoal].targetTimespawn === 'Daily') {
+      currentValue = dailyConsumptionValue;
+    } else {
+      currentValue = monthlyConsumptionValue;
+    }
+    if (currentValue > goals[currentGoal].targetValue) {
       return false;
     }
 
@@ -48,7 +55,7 @@ class HomeScreen extends Component {
         </CardSection>
 
         
-        <DailyConsumption userJsonData={this.state.userJsonData} goalStatus={this.goalStatus()} />
+        <CurrentConsumption userJsonData={this.state.userJsonData} goalStatus={this.goalStatus()} />
 
         <CardSection style={socialStyle}>
           <Button>Social</Button>
