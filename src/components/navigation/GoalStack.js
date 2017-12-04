@@ -2,17 +2,26 @@ import { StackNavigator } from 'react-navigation';
 import React from 'react';
 import { Image, TouchableWithoutFeedback } from 'react-native';
 import AddGoal from '../AddGoal';
+import GoalHistory from '../GoalHistory';
 
 const GoalStack = StackNavigator({
   'Add Goal': {
-    screen: AddGoal
+    screen: AddGoal,
+    navigationOptions: {
+      headerTitle: 'Add Goal'
+    }
+  },
+  'Goal History': {
+    screen: GoalHistory,
+    navigationOptions: {
+      headerTitle: 'Goal History'
+    }
   }
 }, {
   headerMode: 'float',
   navigationOptions: ({ navigation }) => ({
-    title: 'Add Goal',
     headerLeft: <TouchableWithoutFeedback
-      onPress={() => navigation.goBack(null)} 
+      onPress={() => navigation.navigate('Goals')} 
     > 
     <Image 
       style={{ width: 50, height: 50 }}

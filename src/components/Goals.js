@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { CardSection, Card, Button } from './common';
-import { DailyConsumption } from './DailyConsumption';
+import { CurrentConsumption } from './CurrentConsumption';
 
 class HomeScreen extends Component {
 
@@ -10,7 +10,7 @@ class HomeScreen extends Component {
 
     return (
       <Card style={cardStyle}>
-        <DailyConsumption />
+        <CurrentConsumption />
 
         <CardSection style={buttonStyleOne}>
           <Button
@@ -21,7 +21,10 @@ class HomeScreen extends Component {
         </CardSection>
 
         <CardSection style={buttonStyleTwo}>
-          <Button>Past goals</Button>
+          <Button
+            onPress={() => navigate('Goal History')}
+          >
+            Past goals</Button>
         </CardSection>
       </Card>
     );
