@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { CardSection, Card, Button } from './common';
 import { CurrentConsumption } from './CurrentConsumption';
 
-class HomeScreen extends Component {
+class Goals extends Component {
 
   render() {
     const { cardStyle, buttonStyleOne, buttonStyleTwo } = styles;
@@ -54,4 +54,4 @@ const styles = {
   }
 };
 
-export default HomeScreen;
+export default Goals;
