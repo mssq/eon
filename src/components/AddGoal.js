@@ -4,7 +4,8 @@ import { Text, Picker, Dimensions } from 'react-native';
 import { CardSection, Card, Button, Input, Confirm } from './common';
 import FileHandling from './filehandling/FileHandling';
 
-class HomeScreen extends Component {
+class AddGoal extends Component {
+  
   state = { targetValue: 6, targetUnit: 'kW', targetTimespawn: 'Daily', showModal: false };
 
   onAccept() {
@@ -133,4 +134,4 @@ const styles = {
   }
 };
 
-export default HomeScreen;
+export default AddGoal;
